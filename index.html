@@ -512,6 +512,7 @@
   }
   @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* TABLET */
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -524,6 +525,127 @@
     .metricas-grid { grid-template-columns: repeat(2,1fr); }
     .slide-title { font-size: 32px; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* MÓVIL */
+  @media (max-width: 600px) {
+    /* Ocultar cursor personalizado en táctil */
+    .cursor, .cursor-ring { display: none; }
+    * { cursor: auto !important; }
+
+    /* Nav */
+    nav { padding: 14px 20px; }
+    .nav-logo { font-size: 18px; }
+
+    /* Slides */
+    .slide { padding: 90px 20px 56px; min-height: auto; }
+
+    /* Portada */
+    .slide-portada { padding-top: 100px; padding-bottom: 60px; }
+    .portada-logo-text { font-size: 40px; letter-spacing: -2px; }
+    .portada-badge { font-size: 10px; letter-spacing: 2px; padding: 6px 14px; }
+    .portada-desc { font-size: 14px; margin-bottom: 40px; }
+    .portada-stats { gap: 20px; justify-content: center; }
+    .stat-num { font-size: 28px; }
+    .stat-label { font-size: 11px; }
+
+    /* Tipografía */
+    .slide-title { font-size: 26px; line-height: 1.15; margin-bottom: 12px; }
+    .slide-label { font-size: 9px; letter-spacing: 3px; }
+    .slide-sub { font-size: 14px; margin-bottom: 32px; }
+
+    /* Grids — todos a 1 columna */
+    .problema-grid,
+    .func-grid,
+    .planes-grid,
+    .condiciones-grid,
+    .nichos-grid,
+    .metricas-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Problema cards */
+    .prob-card, .func-card, .nicho-card, .cond-card { padding: 24px; border-radius: 16px; }
+
+    /* Solución */
+    .solucion-layout { grid-template-columns: 1fr; gap: 32px; }
+    .feat { padding: 16px; gap: 14px; }
+    .feat-icon { width: 36px; height: 36px; font-size: 16px; }
+    .solucion-visual { padding: 24px; border-radius: 16px; }
+    .bubble { font-size: 12px; padding: 10px 14px; }
+
+    /* Planes */
+    .plan-card { border-radius: 18px; }
+    .plan-header { padding: 24px; }
+    .plan-body { padding: 24px; }
+    .plan-name { font-size: 18px; }
+    .plan-price { font-size: 28px; }
+
+    /* Precios */
+    .precios-layout { grid-template-columns: 1fr; gap: 24px; }
+    .precio-main { border-radius: 20px; }
+    .precio-header { padding: 28px; }
+    .precio-header-title { font-size: 20px; }
+    .precio-body { padding: 20px; }
+    .precio-row { padding: 14px 0; flex-direction: column; gap: 6px; align-items: flex-start; }
+    .precio-amount { font-size: 20px; text-align: left; }
+    .nota-card { padding: 20px; }
+
+    /* Nichos */
+    .nichos-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .nicho-card { padding: 20px 16px; border-radius: 16px; }
+    .nicho-icon { font-size: 28px; margin-bottom: 10px; }
+    .nicho-name { font-size: 13px; }
+    .nicho-desc { font-size: 11px; }
+
+    /* Métricas */
+    .metricas-grid { grid-template-columns: repeat(2,1fr); gap: 14px; }
+    .metrica-card { padding: 24px 16px; border-radius: 18px; }
+    .metrica-num { font-size: 38px; }
+    .metrica-label { font-size: 12px; }
+
+    /* Condiciones */
+    .condiciones-grid { grid-template-columns: 1fr; }
+    .cond-header { gap: 10px; }
+    .cond-icon { width: 40px; height: 40px; font-size: 18px; border-radius: 12px; }
+    .cond-title { font-size: 15px; }
+    .cond-desc { font-size: 13px; }
+
+    /* Garantía */
+    .slide-title { font-size: 26px; }
+
+    /* CTA */
+    .cta-title { font-size: 26px; }
+    .cta-sub { font-size: 14px; }
+
+    /* Formulario */
+    .slide > div[style*="max-width:680px"] { padding: 28px 20px !important; border-radius: 18px !important; }
+    form { gap: 16px !important; }
+    form > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; display: grid !important; gap: 16px !important; }
+    input, select { font-size: 14px !important; padding: 12px 14px !important; }
+    button[type="submit"] { font-size: 14px !important; padding: 14px 24px !important; }
+
+    /* Precio descuento CTA */
+    div[style*="display:inline-flex"][style*="gap:16px"] { 
+      flex-direction: column !important; 
+      align-items: center !important; 
+      text-align: center !important;
+      padding: 20px !important;
+    }
+
+    /* Marcas */
+    .marca-chip { font-size: 12px; padding: 10px 16px; }
+
+    /* Footer */
+    footer { padding: 28px 20px; flex-direction: column; gap: 10px; text-align: center; }
+    .footer-logo { font-size: 16px; }
+    .footer-text { font-size: 11px; }
+  }
+
+  /* MÓVIL PEQUEÑO */
+  @media (max-width: 380px) {
+    .portada-logo-text { font-size: 32px; }
+    .slide-title { font-size: 22px; }
+    .metricas-grid, .nichos-grid { grid-template-columns: 1fr; }
+    .metrica-num { font-size: 32px; }
   }
 </style>
 </head>
