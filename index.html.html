@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORIX — Presentación Comercial</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2EE87A;
+    --verde-deep: #1A7A4A;
+    --negro: #080C0A;
+    --negro2: #111712;
+    --gris1: #1C2420;
+    --gris2: #2E3B35;
+    --gris3: #8FA899;
+    --blanco: #F0F7F3;
+    --blanco2: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 60px;
+    background: rgba(8,12,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gris1);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px; font-weight: 800;
+    color: var(--blanco2);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--verde); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; color: var(--gris3); text-decoration: none;
+    letter-spacing: 0.5px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--verde); }
+
+  /* SLIDES */
+  .slide {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .slide + .slide { border-top: 1px solid var(--gris1); }
+
+  /* SLIDE 1 — PORTADA */
+  .slide-portada {
+    background: var(--negro);
+    align-items: center; text-align: center;
+  }
+  .slide-portada::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(46,232,122,0.1) 0%, transparent 65%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .portada-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(46,232,122,0.08);
+    border: 1px solid rgba(46,232,122,0.25);
+    border-radius: 100px; padding: 8px 20px;
+    font-size: 11px; color: var(--verde);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .portada-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--verde); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  .portada-logo {
+    display: flex; align-items: center; gap: 20px;
+    justify-content: center; margin-bottom: 32px;
+  }
+  .portada-logo-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 96px; font-weight: 800;
+    letter-spacing: -4px; color: var(--blanco2); line-height: 1;
+  }
+  .portada-logo-text span { color: var(--verde); }
+  .portada-tagline {
+    font-size: 18px; font-weight: 300;
+    color: var(--gris3); letter-spacing: 6px;
+    text-transform: uppercase; margin-bottom: 48px;
+  }
+  .portada-desc {
+    max-width: 600px; font-size: 17px; line-height: 1.8;
+    color: var(--gris3); margin: 0 auto 64px;
+  }
+  .portada-stats {
+    display: flex; gap: 64px; justify-content: center;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 40px; font-weight: 800; color: var(--verde);
+  }
+  .stat-label { font-size: 12px; color: var(--gris3); letter-spacing: 1px; margin-top: 4px; }
+
+  /* SECTION LABEL */
+  .slide-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 5px; text-transform: uppercase;
+    color: var(--verde); margin-bottom: 16px;
+  }
+  .slide-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px; font-weight: 700;
+    color: var(--blanco2); line-height: 1.05; margin-bottom: 16px;
+  }
+  .slide-sub {
+    font-size: 16px; color: var(--gris3);
+    line-height: 1.7; max-width: 600px; margin-bottom: 60px;
+  }
+
+  /* SLIDE 2 — PROBLEMA */
+  .slide-problema { background: var(--negro2); }
+  .problema-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+  }
+  .problema-card {
+    background: var(--gris1);
+    border: 1px solid var(--gris2);
+    border-radius: 20px; padding: 36px;
+    position: relative; overflow: hidden;
+  }
+  .problema-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--verde), transparent);
+  }
+  .problema-icon { font-size: 32px; margin-bottom: 20px; }
+  .problema-titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--blanco2); margin-bottom: 12px;
+  }
+  .problema-desc { font-size: 14px; color: var(--gris3); line-height: 1.7; }
+
+  /* SLIDE 3 — SOLUCIÓN */
+  .slide-solucion { background: var(--negro); }
+  .solucion-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .solucion-features { display: flex; flex-direction: column; gap: 24px; }
+  .feat {
+    display: flex; gap: 20px; align-items: flex-start;
+    background: var(--gris1); border: 1px solid var(--gris2);
+    border-radius: 16px; padding: 24px;
+  }
+  .feat-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(46,232,122,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .feat-title {
+    font-family: 'Syne', sans-serif; font-size: 15px;
+    font-weight: 700; color: var(--blanco2); margin-bottom: 6px;
+  }
+  .feat-desc { font-size: 13px; color: var(--gris3); line-height: 1.6; }
+
+  .solucion-visual {
+    background: var(--gris1); border: 1px solid var(--gris2);
+    border-radius: 24px; padding: 40px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .chat-bubble {
+    display: flex; gap: 12px; align-items: flex-end;
+  }
+  .chat-bubble.bot { flex-direction: row; }
+  .chat-bubble.user { flex-direction: row-reverse; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .avatar.bot-av { background: rgba(46,232,122,0.15); }
+  .avatar.user-av { background: var(--gris2); }
+  .bubble {
+    max-width: 75%; padding: 14px 18px;
+    border-radius: 18px; font-size: 13px; line-height: 1.5;
+  }
+  .bubble.bot-msg {
+    background: var(--gris2); color: var(--blanco);
+    border-bottom-left-radius: 4px;
+  }
+  .bubble.user-msg {
+    background: var(--verde-deep); color: var(--blanco2);
+    border-bottom-right-radius: 4px;
+  }
+  .chat-time { font-size: 10px; color: var(--gris3); text-align: center; margin: 4px 0; }
+
+  /* SLIDE 4 — COMO FUNCIONA */
+  .slide-como { background: var(--negro2); }
+  .pasos { display: flex; flex-direction: column; gap: 0; }
+  .paso {
+    display: flex; gap: 40px; align-items: flex-start;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--gris1);
+  }
+  .paso:last-child { border-bottom: none; }
+  .paso-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 52px; font-weight: 800;
+    color: var(--verde); opacity: 0.3;
+    line-height: 1; flex-shrink: 0; width: 80px;
+  }
+  .paso-content { flex: 1; }
+  .paso-title {
+    font-family: 'Syne', sans-serif; font-size: 22px;
+    font-weight: 700; color: var(--blanco2); margin-bottom: 10px;
+  }
+  .paso-desc { font-size: 15px; color: var(--gris3); line-height: 1.7; }
+  .paso-tag {
+    display: inline-block; margin-top: 12px;
+    background: rgba(46,232,122,0.1);
+    border: 1px solid rgba(46,232,122,0.2);
+    border-radius: 8px; padding: 5px 14px;
+    font-size: 12px; color: var(--verde);
+  }
+
+  /* SLIDE 5 — FUNCIONALIDADES */
+  .slide-func { background: var(--negro); }
+  .func-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .func-card {
+    background: var(--negro2); border: 1px solid var(--gris2);
+    border-radius: 20px; padding: 32px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .func-card:hover { border-color: var(--verde); transform: translateY(-2px); }
+  .func-emoji { font-size: 28px; margin-bottom: 16px; }
+  .func-title {
+    font-family: 'Syne', sans-serif; font-size: 16px;
+    font-weight: 700; color: var(--blanco2); margin-bottom: 10px;
+  }
+  .func-desc { font-size: 13px; color: var(--gris3); line-height: 1.65; }
+
+  /* SLIDE 6 — PLANES */
+  .slide-planes { background: var(--negro2); }
+  .planes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .plan-card {
+    background: var(--negro); border: 1px solid var(--gris2);
+    border-radius: 24px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.2s;
+  }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.featured {
+    border-color: var(--verde);
+    box-shadow: 0 0 40px rgba(46,232,122,0.1);
+  }
+  .plan-header { padding: 32px; border-bottom: 1px solid var(--gris1); }
+  .plan-badge {
+    display: inline-block; margin-bottom: 16px;
+    background: rgba(46,232,122,0.1);
+    border: 1px solid rgba(46,232,122,0.25);
+    border-radius: 100px; padding: 4px 14px;
+    font-size: 11px; color: var(--verde); letter-spacing: 1px;
+  }
+  .plan-name {
+    font-family: 'Syne', sans-serif; font-size: 22px;
+    font-weight: 700; color: var(--blanco2); margin-bottom: 8px;
+  }
+  .plan-desc { font-size: 13px; color: var(--gris3); line-height: 1.6; }
+  .plan-body { padding: 32px; flex: 1; }
+  .plan-price-section { margin-bottom: 28px; }
+  .plan-price {
+    font-family: 'Syne', sans-serif; font-size: 36px;
+    font-weight: 800; color: var(--verde);
+  }
+  .plan-price-sub { font-size: 12px; color: var(--gris3); margin-top: 4px; }
+  .plan-items { display: flex; flex-direction: column; gap: 12px; }
+  .plan-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 13px; color: var(--gris3);
+  }
+  .check {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(46,232,122,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--verde); flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* SLIDE 7 — PRECIOS */
+  .slide-precios { background: var(--negro); }
+  .precios-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .precio-main {
+    background: var(--negro2); border: 1px solid var(--verde);
+    border-radius: 28px; overflow: hidden;
+    box-shadow: 0 0 60px rgba(46,232,122,0.08);
+  }
+  .precio-header {
+    background: linear-gradient(135deg, var(--verde-deep), #0d4a2a);
+    padding: 40px;
+  }
+  .precio-header-label { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+  .precio-header-title {
+    font-family: 'Syne', sans-serif; font-size: 30px;
+    font-weight: 700; color: white; margin-bottom: 8px;
+  }
+  .precio-header-sub { font-size: 14px; color: rgba(255,255,255,0.7); }
+  .precio-body { padding: 40px; }
+  .precio-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--gris1);
+  }
+  .precio-row:last-child { border-bottom: none; }
+  .precio-row-label { font-size: 14px; color: var(--gris3); }
+  .precio-row-label strong { display: block; font-size: 15px; color: var(--blanco2); margin-bottom: 4px; }
+  .precio-amount {
+    font-family: 'Syne', sans-serif; font-size: 26px;
+    font-weight: 800; color: var(--verde); text-align: right;
+  }
+  .precio-amount small { display: block; font-size: 11px; color: var(--gris3); font-family: 'DM Sans'; font-weight: 400; }
+
+  .precio-notas { display: flex; flex-direction: column; gap: 20px; }
+  .nota-card {
+    background: var(--negro2); border: 1px solid var(--gris2);
+    border-radius: 16px; padding: 28px;
+    position: relative; overflow: hidden;
+  }
+  .nota-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0;
+    width: 3px; height: 100%;
+    background: var(--verde);
+  }
+  .nota-title {
+    font-family: 'Syne', sans-serif; font-size: 16px;
+    font-weight: 700; color: var(--blanco2); margin-bottom: 8px;
+  }
+  .nota-desc { font-size: 13px; color: var(--gris3); line-height: 1.65; }
+
+  /* SLIDE 8 — NICHOS */
+  .slide-nichos { background: var(--negro2); }
+  .nichos-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .nicho-card {
+    background: var(--negro); border: 1px solid var(--gris2);
+    border-radius: 20px; padding: 28px; text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .nicho-card:hover { border-color: var(--verde); transform: translateY(-2px); }
+  .nicho-icon { font-size: 36px; margin-bottom: 16px; }
+  .nicho-name {
+    font-family: 'Syne', sans-serif; font-size: 16px;
+    font-weight: 700; color: var(--blanco2); margin-bottom: 8px;
+  }
+  .nicho-desc { font-size: 12px; color: var(--gris3); line-height: 1.6; }
+
+  /* SLIDE 9 — CONDICIONES */
+  .slide-condiciones { background: var(--negro); }
+  .condiciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cond-card {
+    background: var(--negro2); border: 1px solid var(--gris2);
+    border-radius: 20px; padding: 36px;
+  }
+  .cond-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .cond-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: rgba(46,232,122,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .cond-title {
+    font-family: 'Syne', sans-serif; font-size: 18px;
+    font-weight: 700; color: var(--blanco2);
+  }
+  .cond-desc { font-size: 14px; color: var(--gris3); line-height: 1.7; }
+
+  /* SLIDE 10 — CTA */
+  .slide-cta {
+    background: var(--negro2);
+    align-items: center; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .slide-cta::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(46,232,122,0.08) 0%, transparent 65%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 0;
+  }
+  .slide-cta .cta-label,
+  .slide-cta .cta-title,
+  .slide-cta .cta-sub,
+  .slide-cta a.cta-btn,
+  .slide-cta .cta-disclaimer { position: relative; z-index: 1; }
+  .cta-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 60px; font-weight: 800;
+    color: var(--blanco2); line-height: 1.1;
+    max-width: 900px; margin: 0 auto 24px;
+    text-align: center;
+  }
+  .cta-title span { color: var(--verde); }
+  .cta-sub {
+    font-size: 18px; color: var(--gris3); max-width: 500px;
+    margin: 0 auto 56px; line-height: 1.7;
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--verde); color: var(--negro);
+    padding: 18px 40px; border-radius: 100px;
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; border: none;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(46,232,122,0.3);
+  }
+  .cta-disclaimer {
+    margin-top: 24px; font-size: 13px; color: var(--gris3);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--negro); border-top: 1px solid var(--gris1);
+    padding: 40px 80px; display: flex;
+    justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-size: 20px;
+    font-weight: 800; color: var(--blanco2);
+  }
+  .footer-logo span { color: var(--verde); }
+  .footer-text { font-size: 12px; color: var(--gris3); }
+
+  /* CURSOR PERSONALIZADO */
+  * { cursor: none !important; }
+  .cursor {
+    width: 10px; height: 10px; background: var(--verde);
+    border-radius: 50%; position: fixed; pointer-events: none;
+    z-index: 99999; transform: translate(-50%,-50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1.5px solid rgba(46,232,122,0.5);
+    border-radius: 50%; position: fixed; pointer-events: none;
+    z-index: 99998; transform: translate(-50%,-50%);
+    transition: all 0.15s ease;
+  }
+  .cursor.expand { width: 20px; height: 20px; background: var(--verde-deep); }
+  .cursor-ring.expand { width: 50px; height: 50px; border-color: var(--verde); }
+
+  /* MÉTRICAS */
+  .metricas-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 0; }
+  .metrica-card {
+    background: var(--negro); border: 1px solid var(--gris2);
+    border-radius: 24px; padding: 36px 24px; text-align: center;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .metrica-card:hover { border-color: var(--verde); transform: translateY(-4px); }
+  .metrica-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--verde), transparent);
+  }
+  .metrica-icon { font-size: 28px; margin-bottom: 14px; }
+  .metrica-num {
+    font-family: 'Syne', sans-serif; font-size: 52px;
+    font-weight: 800; color: var(--verde); line-height: 1; margin-bottom: 8px;
+  }
+  .metrica-label { font-size: 13px; color: var(--gris3); line-height: 1.5; }
+
+  /* MARCAS */
+  .marcas-track {
+    display: flex; gap: 32px; overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marcas-inner {
+    display: flex; gap: 32px; flex-shrink: 0;
+    animation: scroll-marcas 28s linear infinite;
+  }
+  .marca-chip {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--negro2); border: 1px solid var(--gris2);
+    border-radius: 100px; padding: 12px 24px; white-space: nowrap;
+    font-family: 'Syne', sans-serif; font-size: 14px;
+    font-weight: 700; color: var(--gris3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .marca-chip:hover { border-color: var(--verde); color: var(--verde); }
+  .marca-dot { width: 8px; height: 8px; background: var(--verde); border-radius: 50%; opacity: 0.6; }
+
+  /* ANIMACIONES */
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  @keyframes scroll-marcas {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .slide { padding: 100px 24px 60px; }
+    .portada-logo-text { font-size: 56px; }
+    .portada-stats { gap: 32px; flex-wrap: wrap; }
+    .solucion-layout, .precios-layout, .condiciones-grid { grid-template-columns: 1fr; }
+    .problema-grid, .func-grid, .planes-grid { grid-template-columns: 1fr; }
+    .nichos-grid { grid-template-columns: repeat(2,1fr); }
+    .metricas-grid { grid-template-columns: repeat(2,1fr); }
+    .slide-title { font-size: 32px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ORI<span>X</span></div>
+  <div class="nav-links">
+    <a href="#problema">El problema</a>
+    <a href="#solucion">Solución</a>
+    <a href="#funcionalidades">Funcionalidades</a>
+    <a href="#planes">Planes</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- SLIDE 1: PORTADA -->
+<div class="slide slide-portada">
+  <div class="portada-badge">
+    <div class="portada-badge-dot"></div>
+    Automatización Inteligente · WhatsApp
+  </div>
+  <div class="portada-logo">
+    <svg width="64" height="64" viewBox="0 0 60 60" fill="none">
+      <rect x="2" y="2" width="56" height="56" rx="16" stroke="#2EE87A" stroke-width="2" fill="none"/>
+      <path d="M15 30 L25 18 L35 30 L25 42 Z" fill="#2EE87A" opacity="0.9"/>
+      <path d="M28 30 L38 18 L48 30 L38 42 Z" fill="#1A7A4A" opacity="0.8"/>
+      <circle cx="30" cy="30" r="4" fill="#F0F7F3"/>
+    </svg>
+    <span class="portada-logo-text">ORI<span>X</span></span>
+  </div>
+  <p class="portada-tagline">Automatización Inteligente para Negocios</p>
+  <p class="portada-desc">Transforma tu WhatsApp en un asistente de ventas que trabaja 24/7, responde al instante y convierte conversaciones en clientes.</p>
+  <div class="portada-stats">
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Disponibilidad</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Agentes incluidos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">+10</div>
+      <div class="stat-label">Nichos de negocio</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Permanencia mínima</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: EL PROBLEMA -->
+<div class="slide slide-problema" id="problema">
+  <p class="slide-label">01 — El Problema</p>
+  <h2 class="slide-title">¿Qué le está costando<br>a tu negocio hoy?</h2>
+  <p class="slide-sub">Cada mensaje sin responder es un cliente que se va. La mayoría de los negocios pierden ventas sin saberlo.</p>
+  <div class="problema-grid">
+    <div class="problema-card">
+      <div class="problema-icon">⏰</div>
+      <div class="problema-titulo">Respuestas tardías</div>
+      <div class="problema-desc">Los clientes escriben a cualquier hora. Si no respondes en los primeros minutos, buscan otra opción. El tiempo de respuesta es crítico.</div>
+    </div>
+    <div class="problema-card">
+      <div class="problema-icon">🔁</div>
+      <div class="problema-titulo">Preguntas repetitivas</div>
+      <div class="problema-desc">Horarios, precios, disponibilidad, catálogos... tu equipo responde lo mismo decenas de veces al día, perdiendo tiempo valioso.</div>
+    </div>
+    <div class="problema-card">
+      <div class="problema-icon">💸</div>
+      <div class="problema-titulo">Ventas que se escapan</div>
+      <div class="problema-desc">Un cliente interesado que no recibe respuesta a tiempo se convierte en una venta perdida. Eso pasa todos los días sin que lo notes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: SOLUCIÓN -->
+<div class="slide slide-solucion" id="solucion">
+  <p class="slide-label">02 — La Solución</p>
+  <h2 class="slide-title">Tu negocio, siempre<br>disponible.</h2>
+  <div class="solucion-layout">
+    <div class="solucion-features">
+      <div class="feat">
+        <div class="feat-icon">🤖</div>
+        <div>
+          <div class="feat-title">Bot con IA personalizado</div>
+          <div class="feat-desc">Configurado específicamente para tu negocio: productos, precios, servicios y flujos de conversación a tu medida.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📱</div>
+        <div>
+          <div class="feat-title">Funciona desde tu WhatsApp</div>
+          <div class="feat-desc">Usamos tu número actual o uno nuevo. El bot responde automáticamente mientras tú te enfocas en lo que importa.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">👥</div>
+        <div>
+          <div class="feat-title">Equipo humano integrado</div>
+          <div class="feat-desc">Hasta 5 agentes conectados. El bot atiende automáticamente y escala al asesor correcto cuando es necesario.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">⚡</div>
+        <div>
+          <div class="feat-title">Activo en minutos</div>
+          <div class="feat-desc">La demo es en vivo. Escaneas un QR y ves el bot respondiendo en tiempo real desde el primer momento.</div>
+        </div>
+      </div>
+    </div>
+    <div class="solucion-visual">
+      <div style="font-size:11px;letter-spacing:2px;color:var(--verde);text-transform:uppercase;margin-bottom:16px;">Vista previa del bot</div>
+      <div class="chat-time">Hoy · 11:32 pm</div>
+      <div class="chat-bubble user">
+        <div class="avatar user-av">👤</div>
+        <div class="bubble user-msg">Hola! ¿Tienen mesa disponible para mañana a las 8pm para 4 personas?</div>
+      </div>
+      <div class="chat-bubble bot">
+        <div class="avatar bot-av">🤖</div>
+        <div class="bubble bot-msg">¡Hola! Con gusto te ayudo 😊 Sí tenemos disponibilidad para mañana a las 8pm. ¿Me confirmas el nombre para la reserva?</div>
+      </div>
+      <div class="chat-bubble user">
+        <div class="avatar user-av">👤</div>
+        <div class="bubble user-msg">Sí! A nombre de Carlos Rodríguez</div>
+      </div>
+      <div class="chat-bubble bot">
+        <div class="avatar bot-av">🤖</div>
+        <div class="bubble bot-msg">✅ ¡Listo Carlos! Tu reserva está confirmada para mañana a las 8pm, mesa para 4. Te esperamos 🍽️</div>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--gris2);font-size:12px;color:var(--gris3);text-align:center;">Respuesta automática · Tiempo: 0.8s</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: CÓMO FUNCIONA -->
+<div class="slide slide-como" id="como">
+  <p class="slide-label">03 — Proceso</p>
+  <h2 class="slide-title">Así de simple es<br>comenzar.</h2>
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">01</div>
+      <div class="paso-content">
+        <div class="paso-title">Demo en vivo en tu negocio</div>
+        <div class="paso-desc">Llegamos con un bot preconfigurado para tu nicho. Tú escaneas un código QR con tu celular y en segundos ves el bot respondiendo mensajes reales en tu WhatsApp.</div>
+        <span class="paso-tag">⚡ Sin instalaciones · Sin tecnicismos</span>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">02</div>
+      <div class="paso-content">
+        <div class="paso-title">Personalización completa</div>
+        <div class="paso-desc">Adaptamos el bot exactamente a tu negocio: menú, precios, servicios, horarios, flujos de conversación, mensajes de bienvenida y configuración de agentes.</div>
+        <span class="paso-tag">🎯 100% a la medida de tu negocio</span>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">03</div>
+      <div class="paso-content">
+        <div class="paso-title">Activación y entrega</div>
+        <div class="paso-desc">Una vez aprobada la configuración final, el bot queda activo. Desde ese momento responde automáticamente los 7 días de la semana, las 24 horas del día.</div>
+        <span class="paso-tag">✅ Soporte continuo incluido</span>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">04</div>
+      <div class="paso-content">
+        <div class="paso-title">Ajustes cuando los necesites</div>
+        <div class="paso-desc">¿Cambió un precio? ¿Nuevo producto? ¿Quieres ajustar el flujo? Nos solicitas el cambio y lo hacemos. Tú te enfocas en tu negocio, nosotros en el bot.</div>
+        <span class="paso-tag">🔧 Cambios incluidos en tu mensualidad</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: FUNCIONALIDADES -->
+<div class="slide slide-func" id="funcionalidades">
+  <p class="slide-label">04 — Funcionalidades</p>
+  <h2 class="slide-title">Todo lo que tu bot<br>puede hacer.</h2>
+  <p class="slide-sub">Cada funcionalidad está diseñada para atender, vender y fidelizar a tus clientes de forma automática.</p>
+  <div class="func-grid">
+    <div class="func-card">
+      <div class="func-emoji">💬</div>
+      <div class="func-title">Respuesta automática 24/7</div>
+      <div class="func-desc">El bot responde al instante a cualquier mensaje entrante, incluso a las 3am. Ningún cliente queda sin respuesta.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">📋</div>
+      <div class="func-title">Catálogos y menús</div>
+      <div class="func-desc">Envía tu catálogo de productos o menú completo con precios. El bot identifica qué busca el cliente y le muestra lo que necesita.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">📅</div>
+      <div class="func-title">Agendamiento de citas</div>
+      <div class="func-desc">Coordina y confirma citas, reservas o turnos directamente desde el chat, sin intervención humana.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">🧾</div>
+      <div class="func-title">Validación de pagos</div>
+      <div class="func-desc">El bot reconoce y lee comprobantes de pago enviados como imagen. Confirma el pago automáticamente al cliente.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">📣</div>
+      <div class="func-title">Remarketing automático</div>
+      <div class="func-desc">Si un cliente mostró interés pero no finalizó, el bot le envía un mensaje de seguimiento hasta 23 horas después con una promoción o recordatorio.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">👥</div>
+      <div class="func-title">Hasta 5 agentes humanos</div>
+      <div class="func-desc">Conecta a tu equipo de ventas o atención. Cada agente tiene su propio saludo y puede recibir conversaciones escaladas por el bot.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">🎯</div>
+      <div class="func-title">Detección de intención</div>
+      <div class="func-desc">El bot entiende lo que quiere el cliente aunque lo diga de distintas formas, y guía la conversación hacia la acción correcta.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">👋</div>
+      <div class="func-title">Mensaje de bienvenida</div>
+      <div class="func-desc">Cada número nuevo que escriba recibe un mensaje inicial personalizado, creando una primera impresión profesional e inmediata.</div>
+    </div>
+    <div class="func-card">
+      <div class="func-emoji">🔌</div>
+      <div class="func-title">IA de última generación</div>
+      <div class="func-desc">Integrado con OpenAI, Google Gemini y Groq. El bot entiende lenguaje natural y conversa de forma fluida y humana.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: PLANES -->
+<div class="slide slide-planes" id="planes">
+  <p class="slide-label">05 — Planes de Conexión</p>
+  <h2 class="slide-title">Elige cómo conectar<br>tu WhatsApp.</h2>
+  <p class="slide-sub">Tres opciones según el volumen de mensajes de tu negocio. Todas incluyen el mismo bot inteligente.</p>
+  <div class="planes-grid">
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-badge">Básico</div>
+        <div class="plan-name">Número Actual</div>
+        <div class="plan-desc">Usamos el número de WhatsApp que ya tienes. Ideal para negocios con flujo moderado de mensajes.</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-price-section">
+          <div class="plan-price">Tu número</div>
+          <div class="plan-price-sub">Sin costo adicional de línea</div>
+        </div>
+        <div class="plan-items">
+          <div class="plan-item"><div class="check">✓</div>Hasta ~250 mensajes/día</div>
+          <div class="plan-item"><div class="check">✓</div>Configuración rápida</div>
+          <div class="plan-item"><div class="check">✓</div>Sin cambio de número</div>
+          <div class="plan-item"><div class="check">✓</div>Bot activo inmediatamente</div>
+        </div>
+      </div>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-header">
+        <div class="plan-badge">⭐ Recomendado</div>
+        <div class="plan-name">Número Nuevo</div>
+        <div class="plan-desc">Un número nuevo dedicado para el bot. Protege tu número personal ante cualquier eventualidad.</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-price-section">
+          <div class="plan-price">Línea nueva</div>
+          <div class="plan-price-sub">Protección total de tu número</div>
+        </div>
+        <div class="plan-items">
+          <div class="plan-item"><div class="check">✓</div>Hasta ~250 mensajes/día</div>
+          <div class="plan-item"><div class="check">✓</div>Tu número original protegido</div>
+          <div class="plan-item"><div class="check">✓</div>Mismas funcionalidades</div>
+          <div class="plan-item"><div class="check">✓</div>Mayor tranquilidad operativa</div>
+        </div>
+      </div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-badge">Empresarial</div>
+        <div class="plan-name">API de Meta</div>
+        <div class="plan-desc">Para negocios de alta demanda. Configuración oficial vía API de WhatsApp Business. Sin límites de volumen.</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-price-section">
+          <div class="plan-price">API Oficial</div>
+          <div class="plan-price-sub">Costo adicional según volumen</div>
+        </div>
+        <div class="plan-items">
+          <div class="plan-item"><div class="check">✓</div>Mensajes ilimitados</div>
+          <div class="plan-item"><div class="check">✓</div>Máxima estabilidad</div>
+          <div class="plan-item"><div class="check">✓</div>Integración oficial Meta</div>
+          <div class="plan-item"><div class="check">✓</div>Para empresas en crecimiento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: PRECIOS -->
+<div class="slide slide-precios" id="precios">
+  <p class="slide-label">06 — Precios</p>
+  <h2 class="slide-title">Una inversión que se<br>paga sola.</h2>
+  <div class="precios-layout">
+    <div class="precio-main">
+      <div class="precio-header">
+        <div class="precio-header-label">Estructura de pago</div>
+        <div class="precio-header-title">Transparente y sin sorpresas</div>
+        <div class="precio-header-sub">Sin permanencia. Sin letras pequeñas.</div>
+      </div>
+      <div class="precio-body">
+        <div class="precio-row">
+          <div class="precio-row-label">
+            <strong>Mes 1 — Inicio</strong>
+            Configuración completa + primera mensualidad
+          </div>
+          <div class="precio-amount">$80 USD<small>único · precio de lanzamiento</small></div>
+        </div>
+        <div class="precio-row">
+          <div class="precio-row-label">
+            <strong>Desde el mes 2</strong>
+            Servicio mensual + cambios incluidos
+          </div>
+          <div class="precio-amount">$40 USD<small>/ mes</small></div>
+        </div>
+        <div class="precio-row">
+          <div class="precio-row-label">
+            <strong>Uso del bot (mensajes IA)</strong>
+            Hasta 500 mensajes/mes
+          </div>
+          <div class="precio-amount" style="color:var(--verde);font-size:20px;">Gratis<small>incluido</small></div>
+        </div>
+        <div class="precio-row">
+          <div class="precio-row-label">
+            <strong>Si supera 500 mensajes/mes</strong>
+            Costo plataforma de IA (OpenAI / Gemini)
+          </div>
+          <div class="precio-amount" style="font-size:20px;">$2–$4<small>USD / mes aprox.</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="precio-notas">
+      <div class="nota-card">
+        <div class="nota-title">💡 El desglose del primer mes</div>
+        <div class="nota-desc">De los $80 USD iniciales, $40 USD son por la configuración y personalización del bot, y $40 USD corresponden a la primera mensualidad del servicio.</div>
+      </div>
+      <div class="nota-card">
+        <div class="nota-title">🔄 Sin permanencia</div>
+        <div class="nota-desc">Puedes cancelar el servicio en cualquier momento sin penalización. Solo debes seguir pagando la mensualidad mientras uses el servicio activo.</div>
+      </div>
+      <div class="nota-card">
+        <div class="nota-title">⏸️ Pausas y reactivaciones</div>
+        <div class="nota-desc">Puedes pausar el bot cuando quieras, pero la mensualidad sigue corriendo. Si cancelas completamente y deseas volver, se cobra de nuevo la configuración inicial.</div>
+      </div>
+      <div class="nota-card">
+        <div class="nota-title">📊 Comparado con un empleado</div>
+        <div class="nota-desc">$40 USD al mes es menos que una hora de trabajo de un empleado. Tu bot atiende clientes las 24 horas, los 7 días de la semana, sin descansos.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: NICHOS -->
+<div class="slide slide-nichos" id="nichos">
+  <p class="slide-label">07 — Industrias</p>
+  <h2 class="slide-title">Funciona para<br>tu tipo de negocio.</h2>
+  <p class="slide-sub">Orix se adapta a cualquier industria. Tenemos plantillas preconfiguradas para los nichos más comunes.</p>
+  <div class="nichos-grid">
+    <div class="nicho-card">
+      <div class="nicho-icon">🍔</div>
+      <div class="nicho-name">Restaurantes</div>
+      <div class="nicho-desc">Menú, reservas, domicilios, confirmación de pagos.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">💇</div>
+      <div class="nicho-name">Peluquerías</div>
+      <div class="nicho-desc">Agenda de citas, servicios disponibles, precios.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">💅</div>
+      <div class="nicho-name">Estéticas</div>
+      <div class="nicho-desc">Uñas, tratamientos, citas, precios y disponibilidad.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">🏥</div>
+      <div class="nicho-name">Salud</div>
+      <div class="nicho-desc">Consultas, citas médicas, información de servicios.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">🛍️</div>
+      <div class="nicho-name">Tiendas</div>
+      <div class="nicho-desc">Catálogo, stock, pedidos, seguimiento de envíos.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">🏋️</div>
+      <div class="nicho-name">Gimnasios</div>
+      <div class="nicho-desc">Planes, horarios, inscripciones, pagos de membresía.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">🏠</div>
+      <div class="nicho-name">Inmobiliarias</div>
+      <div class="nicho-desc">Propiedades disponibles, visitas, información de precios.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">⚙️</div>
+      <div class="nicho-name">Servicios técnicos</div>
+      <div class="nicho-desc">Cotizaciones, agendamiento, seguimiento de trabajos.</div>
+    </div>
+    <div class="nicho-card">
+      <div class="nicho-icon">🛒</div>
+      <div class="nicho-name">eCommerce y Ventas Online</div>
+      <div class="nicho-desc">Cierre de ventas, seguimiento de pedidos, catálogos digitales y atención postventa automática.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: CONDICIONES -->
+<div class="slide slide-condiciones" id="condiciones">
+  <p class="slide-label">08 — Condiciones del Servicio</p>
+  <h2 class="slide-title">Claridad total desde<br>el primer día.</h2>
+  <p class="slide-sub">Sin letras pequeñas. Estas son las condiciones de nuestro servicio explicadas de forma simple.</p>
+  <div class="condiciones-grid">
+    <div class="cond-card">
+      <div class="cond-header">
+        <div class="cond-icon">🔓</div>
+        <div class="cond-title">Sin permanencia</div>
+      </div>
+      <div class="cond-desc">No hay contrato de fidelidad. Puedes cancelar el servicio al final de cualquier mes sin penalización alguna.</div>
+    </div>
+    <div class="cond-card">
+      <div class="cond-header">
+        <div class="cond-icon">💳</div>
+        <div class="cond-title">Mensualidad continua</div>
+      </div>
+      <div class="cond-desc">La mensualidad de $40 USD se paga cada mes mientras el servicio esté activo, incluso si decides pausar el bot temporalmente.</div>
+    </div>
+    <div class="cond-card">
+      <div class="cond-header">
+        <div class="cond-icon">⏸️</div>
+        <div class="cond-title">Pausa del bot</div>
+      </div>
+      <div class="cond-desc">Puedes solicitar apagar el bot cuando quieras (vacaciones, cierre temporal). El bot se desactiva, pero la mensualidad continúa normalmente.</div>
+    </div>
+    <div class="cond-card">
+      <div class="cond-header">
+        <div class="cond-icon">🔄</div>
+        <div class="cond-title">Reactivación</div>
+      </div>
+      <div class="cond-desc">Si cancelas el servicio completamente y deseas reactivarlo en el futuro, se cobra de nuevo el valor de configuración inicial ($80 USD).</div>
+    </div>
+    <div class="cond-card">
+      <div class="cond-header">
+        <div class="cond-icon">🛠️</div>
+        <div class="cond-title">Cambios y ajustes</div>
+      </div>
+      <div class="cond-desc">Los cambios al bot (precios, productos, flujos) están incluidos en la mensualidad. El número de cambios mensuales se detalla en el contrato.</div>
+    </div>
+    <div class="cond-card">
+      <div class="cond-header">
+        <div class="cond-icon">🔒</div>
+        <div class="cond-title">Control de la plataforma</div>
+      </div>
+      <div class="cond-desc">Orix gestiona la plataforma. El cliente accede a su WhatsApp normal y puede vincular hasta 5 agentes. Todo ajuste técnico lo realizamos nosotros.</div>
+    </div>
+  </div>
+</div>
+
+<!-- GARANTÍA -->
+<div class="slide" style="background:var(--negro);align-items:center;text-align:center;" id="garantia">
+  <div style="max-width:800px;margin:0 auto;">
+    <p class="slide-label">Garantía de satisfacción</p>
+    <div style="width:90px;height:90px;background:rgba(46,232,122,0.1);border:2px solid var(--verde);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 32px;">🛡️</div>
+    <h2 class="slide-title" style="font-size:52px;">7 días de prueba.<br><span style="color:var(--verde);">Sin riesgo.</span></h2>
+    <p style="font-size:17px;color:var(--gris3);line-height:1.8;max-width:600px;margin:0 auto 48px;">
+      Confiamos tanto en nuestro servicio que te damos <strong style="color:var(--blanco2);">7 días para probarlo sin riesgo</strong>. Si el bot no cumple tus expectativas, te devolvemos el dinero. Así de simple.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;">
+      <div style="background:var(--negro2);border:1px solid var(--gris2);border-radius:20px;padding:32px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--verde),transparent);"></div>
+        <div style="font-size:28px;margin-bottom:16px;">✅</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--blanco2);margin-bottom:10px;">Activamos tu bot</div>
+        <div style="font-size:13px;color:var(--gris3);line-height:1.7;">Configuramos y activamos el bot completo con toda la personalización de tu negocio.</div>
+      </div>
+      <div style="background:var(--negro2);border:1px solid var(--gris2);border-radius:20px;padding:32px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--verde),transparent);"></div>
+        <div style="font-size:28px;margin-bottom:16px;">🧪</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--blanco2);margin-bottom:10px;">Pruébalo 7 días</div>
+        <div style="font-size:13px;color:var(--gris3);line-height:1.7;">Úsalo con tus clientes reales durante una semana completa y evalúa los resultados.</div>
+      </div>
+      <div style="background:var(--negro2);border:1px solid var(--gris2);border-radius:20px;padding:32px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--verde),transparent);"></div>
+        <div style="font-size:28px;margin-bottom:16px;">💰</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--blanco2);margin-bottom:10px;">¿No te convenció? Te devolvemos todo</div>
+        <div style="font-size:13px;color:var(--gris3);line-height:1.7;">Si en los primeros 7 días el servicio no cumple tus expectativas, te reembolsamos el 100% de tu inversión.</div>
+      </div>
+    </div>
+    <div style="margin-top:40px;display:inline-flex;align-items:center;gap:12px;background:rgba(46,232,122,0.08);border:1px solid rgba(46,232,122,0.2);border-radius:100px;padding:14px 28px;">
+      <span style="font-size:20px;">🔒</span>
+      <span style="font-size:14px;color:var(--gris3);">Garantía válida durante los primeros <strong style="color:var(--verde);">7 días</strong> desde la activación del servicio · Reembolso del <strong style="color:var(--verde);">100%</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: CTA + FORMULARIO -->
+<div class="slide slide-cta" id="contacto" style="align-items:center;text-align:center;">
+  <p class="slide-label" style="position:relative;z-index:1;">¿Listo para empezar?</p>
+  <h2 class="cta-title" style="position:relative;z-index:1;">Tu negocio merece responder como <span>el mejor.</span></h2>
+  <p class="cta-sub" style="position:relative;z-index:1;">Agenda una demo gratuita y ve el bot funcionando en tiempo real con tu propio WhatsApp. Sin compromisos.</p>
+
+  <!-- PRECIO CON DESCUENTO -->
+  <div style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:16px;background:rgba(46,232,122,0.08);border:1px solid rgba(46,232,122,0.25);border-radius:16px;padding:20px 36px;margin-bottom:40px;">
+    <div>
+      <div style="font-size:13px;color:var(--gris3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Precio especial de lanzamiento</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--verde);">$80 USD</span>
+        <div>
+          <div style="font-size:14px;color:var(--gris3);text-decoration:line-through;">Antes: $160 USD</div>
+          <div style="font-size:13px;color:var(--verde);">50% de descuento</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--gris3);margin-top:4px;">Configuración completa + primer mes · Desde el mes 2: $40 USD/mes</div>
+    </div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div style="position:relative;z-index:1;width:100%;max-width:680px;margin:0 auto 40px;background:var(--negro2);border:1px solid var(--gris2);border-radius:24px;padding:48px;text-align:left;">
+    <p style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--verde);margin-bottom:12px;">Agenda tu demo</p>
+    <h3 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--blanco2);margin-bottom:8px;">Cuéntanos sobre tu negocio</h3>
+    <p style="font-size:14px;color:var(--gris3);margin-bottom:32px;">Completa el formulario y te contactamos para agendar tu demo gratuita.</p>
+
+    <form action="https://formspree.io/f/mdapwbkz" method="POST" style="display:flex;flex-direction:column;gap:20px;">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Nombre del negocio *</label>
+          <input type="text" name="negocio" required placeholder="Ej: Restaurante El Sabor"
+            style="width:100%;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 16px;color:var(--blanco2);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Correo electrónico *</label>
+          <input type="email" name="email" required placeholder="tu@correo.com"
+            style="width:100%;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 16px;color:var(--blanco2);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Teléfono de contacto *</label>
+          <div style="display:flex;gap:8px;">
+            <select name="indicativo" required style="width:120px;flex-shrink:0;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 10px;color:var(--blanco2);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;appearance:none;">
+              <option value="" disabled selected>🌎</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+51">🇵🇪 +51</option>
+              <option value="+58">🇻🇪 +58</option>
+              <option value="+593">🇪🇨 +593</option>
+              <option value="+591">🇧🇴 +591</option>
+              <option value="+595">🇵🇾 +595</option>
+              <option value="+598">🇺🇾 +598</option>
+              <option value="+502">🇬🇹 +502</option>
+              <option value="+503">🇸🇻 +503</option>
+              <option value="+504">🇭🇳 +504</option>
+              <option value="+505">🇳🇮 +505</option>
+              <option value="+506">🇨🇷 +506</option>
+              <option value="+507">🇵🇦 +507</option>
+              <option value="+53">🇨🇺 +53</option>
+              <option value="+1809">🇩🇴 +1809</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+55">🇧🇷 +55</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+            </select>
+            <input type="tel" name="telefono" required placeholder="Número de contacto"
+              style="flex:1;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 16px;color:var(--blanco2);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Número de WhatsApp *</label>
+          <div style="display:flex;gap:8px;">
+            <select name="indicativo_wa" required style="width:120px;flex-shrink:0;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 10px;color:var(--blanco2);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;appearance:none;">
+              <option value="" disabled selected>🌎</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+51">🇵🇪 +51</option>
+              <option value="+58">🇻🇪 +58</option>
+              <option value="+593">🇪🇨 +593</option>
+              <option value="+591">🇧🇴 +591</option>
+              <option value="+595">🇵🇾 +595</option>
+              <option value="+598">🇺🇾 +598</option>
+              <option value="+502">🇬🇹 +502</option>
+              <option value="+503">🇸🇻 +503</option>
+              <option value="+504">🇭🇳 +504</option>
+              <option value="+505">🇳🇮 +505</option>
+              <option value="+506">🇨🇷 +506</option>
+              <option value="+507">🇵🇦 +507</option>
+              <option value="+53">🇨🇺 +53</option>
+              <option value="+1809">🇩🇴 +1809</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+55">🇧🇷 +55</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+            </select>
+            <input type="tel" name="whatsapp" required placeholder="Número de WhatsApp"
+              style="flex:1;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 16px;color:var(--blanco2);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Área o nicho del negocio *</label>
+        <select name="nicho" required
+          style="width:100%;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 16px;color:var(--blanco2);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;appearance:none;">
+          <option value="" disabled selected>Selecciona tu industria</option>
+          <option value="Restaurante / Comida">🍔 Restaurante / Comida</option>
+          <option value="Peluquería / Estética">💇 Peluquería / Estética</option>
+          <option value="Salud / Medicina">🏥 Salud / Medicina</option>
+          <option value="Tienda / Retail">🛍️ Tienda / Retail</option>
+          <option value="Gimnasio / Deporte">🏋️ Gimnasio / Deporte</option>
+          <option value="Inmobiliaria">🏠 Inmobiliaria</option>
+          <option value="Servicios técnicos">⚙️ Servicios técnicos</option>
+          <option value="eCommerce / Ventas online">🛒 eCommerce / Ventas online</option>
+          <option value="Educación">📚 Educación</option>
+          <option value="Otro">🔹 Otro</option>
+        </select>
+      </div>
+
+      <div>
+        <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:12px;">¿Qué solución buscas? (puedes elegir varias)</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Más ventas y cierre de pedidos" style="accent-color:#2EE87A;width:16px;height:16px;"> Más ventas y cierre de pedidos
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Atención al cliente 24/7" style="accent-color:#2EE87A;width:16px;height:16px;"> Atención al cliente 24/7
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Agendar citas y reservas" style="accent-color:#2EE87A;width:16px;height:16px;"> Agendar citas y reservas
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Envío de catálogos y precios" style="accent-color:#2EE87A;width:16px;height:16px;"> Envío de catálogos y precios
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Seguimiento de clientes (remarketing)" style="accent-color:#2EE87A;width:16px;height:16px;"> Seguimiento y remarketing
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Validación de pagos" style="accent-color:#2EE87A;width:16px;height:16px;"> Validación de pagos
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Reducir carga del equipo humano" style="accent-color:#2EE87A;width:16px;height:16px;"> Reducir carga del equipo
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--gris3);">
+            <input type="checkbox" name="soluciones[]" value="Mejorar tiempos de respuesta" style="accent-color:#2EE87A;width:16px;height:16px;"> Mejorar tiempos de respuesta
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:12px;color:var(--gris3);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">¿Cuál es tu presupuesto de inversión mensual? *</label>
+        <select name="presupuesto" required
+          style="width:100%;background:var(--gris1);border:1px solid var(--gris2);border-radius:10px;padding:12px 16px;color:var(--blanco2);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;appearance:none;">
+          <option value="" disabled selected>Selecciona un rango</option>
+          <option value="30-40 USD">💚 $30 – $40 USD/mes (como tener un asistente básico)</option>
+          <option value="50-100 USD">⭐ $50 – $100 USD/mes (automatización completa)</option>
+          <option value="200-500 USD">🚀 $200 – $500 USD/mes (solución empresarial)</option>
+          <option value="No estoy seguro">🤔 No estoy seguro, quiero asesoría</option>
+        </select>
+      </div>
+
+      <button type="submit"
+        style="background:var(--verde);color:var(--negro);padding:16px 32px;border-radius:100px;border:none;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;">
+        🚀 Agendar demo gratuita ahora
+      </button>
+
+      <p style="font-size:12px;color:var(--gris3);text-align:center;">Sin permanencia · Sin compromiso · Te respondemos en menos de 24 horas</p>
+    </form>
+  </div>
+
+  <p class="cta-disclaimer" style="position:relative;z-index:1;">Sin permanencia · Activación en el día · Soporte incluido</p>
+</div>
+
+<!-- MÉTRICAS ANIMADAS -->
+<div class="slide" style="background:var(--negro2);" id="metricas">
+  <p class="slide-label">Resultados que hablan</p>
+  <h2 class="slide-title">Números que<br><span style="color:var(--verde);">lo dicen todo.</span></h2>
+  <p class="slide-sub">Lo que logramos junto a los negocios que ya confían en Orix.</p>
+  <div class="metricas-grid">
+    <div class="metrica-card">
+      <div class="metrica-icon">🤖</div>
+      <div class="metrica-num" data-target="500" data-suffix="+">0</div>
+      <div class="metrica-label">Bots activados para negocios en Latinoamérica</div>
+    </div>
+    <div class="metrica-card">
+      <div class="metrica-icon">💬</div>
+      <div class="metrica-num" data-target="98" data-suffix="%">0</div>
+      <div class="metrica-label">De satisfacción entre nuestros clientes activos</div>
+    </div>
+    <div class="metrica-card">
+      <div class="metrica-icon">⚡</div>
+      <div class="metrica-num" data-target="24" data-suffix="/7">0</div>
+      <div class="metrica-label">Horas activo tu bot, sin descansos ni festivos</div>
+    </div>
+    <div class="metrica-card">
+      <div class="metrica-icon">📈</div>
+      <div class="metrica-num" data-target="40" data-suffix="%+">0</div>
+      <div class="metrica-label">Promedio de aumento en reservas y ventas</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARCAS -->
+<div class="slide" style="background:var(--negro);min-height:auto;padding:80px;" id="marcas">
+  <p class="slide-label" style="text-align:center;margin-bottom:16px;">Negocios que confían en Orix</p>
+  <h2 class="slide-title" style="text-align:center;font-size:36px;margin-bottom:48px;">Ellos ya automatizaron<br><span style="color:var(--verde);">su WhatsApp.</span></h2>
+  <div class="marcas-track">
+    <div class="marcas-inner">
+      <div class="marca-chip"><div class="marca-dot"></div>Burguer Nova</div>
+      <div class="marca-chip"><div class="marca-dot"></div>EstudioFit</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Clínica Salvia</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Moda Krezzo</div>
+      <div class="marca-chip"><div class="marca-dot"></div>AutoPlex</div>
+      <div class="marca-chip"><div class="marca-dot"></div>CasaVerde Spa</div>
+      <div class="marca-chip"><div class="marca-dot"></div>TechNovex</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Pizzería Lúna</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Inmobiliaria Nexo</div>
+      <div class="marca-chip"><div class="marca-dot"></div>GymPro Elite</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Dental Viva</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Ferretería Ágil</div>
+      <!-- Duplicado para loop infinito -->
+      <div class="marca-chip"><div class="marca-dot"></div>Burguer Nova</div>
+      <div class="marca-chip"><div class="marca-dot"></div>EstudioFit</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Clínica Salvia</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Moda Krezzo</div>
+      <div class="marca-chip"><div class="marca-dot"></div>AutoPlex</div>
+      <div class="marca-chip"><div class="marca-dot"></div>CasaVerde Spa</div>
+      <div class="marca-chip"><div class="marca-dot"></div>TechNovex</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Pizzería Lúna</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Inmobiliaria Nexo</div>
+      <div class="marca-chip"><div class="marca-dot"></div>GymPro Elite</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Dental Viva</div>
+      <div class="marca-chip"><div class="marca-dot"></div>Ferretería Ágil</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ORI<span>X</span></div>
+  <div class="footer-text">Automatización Inteligente para Negocios · © 2025 Orix</div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .metrica-card, .func-card, .nicho-card, .marca-chip').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); ring.classList.add('expand'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); ring.classList.remove('expand'); });
+  });
+
+  // CONTADOR ANIMADO
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-target'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = Math.floor(current) + suffix;
+    }, 16);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.metrica-num').forEach(animateCounter);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.metricas-grid').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
